@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <title>vue-hello-world</title>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <noscript>
+      <strong>We're sorry but vue-hello-world doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+
+
+
+
+        <hr size="5" color="RED" />
+        <p id="days" style="margin: 0px;">20200519</p>
+        <hr>
+<!-- ここから 20200519 -->
+
+        <div>
+            <form id="form_20200519"
+                action="./submit_post.html"
+                method="POST"
+                @submit="submit_form_20200519"
+            >
+                <p v-if="errors.length">
+                    <b>エラー</b>
+                    <ul>
+                        <li v-for="error in errors">{{ error }}</li>
+                    </ul>
+                </p>
+
+                <!-- 01：名前 -->
+                <p>
+                    <label for="name">名前：</label>
+                    <input
+                        type="text"
+                        id="name_20200519"
+                        v-model="name_20200519"
+                        name="name"
+                    >
+                </p>
+
+                <!-- 02：年齢（数値限定：number） -->
+                <p>
+                    <label for="age">年齢：</label>
+                    <input type="number"
+                        id="age_20200519"
+                        v-model="age_20200519"
+                        name="age"
+                        min="0"
+                    >
+                </p>
+
+                <!-- 03：TEL（チェック機能） -->
+                <p>
+                    <label for="tel">TEL ：</label>
+                    <input type="tel"
+                        id="tel_20200519"
+                        v-model="tel_20200519"
+                    >
+                    <label for="telText">（0x0xxxxxxx：数値のみ）</label>
+                </p>
+
+                <!-- 04：趣味（セレクトボックス） -->
+                <!-- <p>
+                    <label for="hobby">趣味：</label>
+                    <select name="hobby"
+                        id="hobby_20200519"
+                        v-model="hobby_20200519"
+                    >
+                        <option disabled value="">趣味選択</option>
+                        <option v-for="hobbyData in hobbyDatas"
+                            v-bind:value="hobbyData.hobbyValue"
+                        >
+                            {{ hobbyData.hobbyName }}
+                        </option>
+                    </select>
+                </p> -->
+
+                <!-- 05：生別（ラジオボタン） -->
+
+                <!-- 06： -->
+
+                <!-- 07： -->
+
+                <!-- 08： -->
+
+                <!-- 09： -->
+
+                <!-- 10： -->
+
+
+
+                <!-- 住所 -->
+                <!-- メール -->
+                <!-- 住所 -->
+                <!-- 住所 -->
+
+
+
+
+
+                <p>
+                    <input type="submit"
+                        value="送信"
+                    >
+                </p>
+
+            </form>
+            <script>
+                const app_20200519 = new Vue({
+                    el: "#form_20200519",
+                    data: {
+                        errors: [],
+                        name_20200519: null,
+                        age_20200519: null,
+                        tel_20200519: null,
+                        // hobby_20200519: null,
+                        // hobbyDatas: [
+                        //     { hobbyValue: 1, hobbyName: サッカー},
+                        //     { hobbyValue: 2, hobbyName: 野球},
+                        //     { hobbyValue: 3, hobbyName: バスケット}
+                        // ],
+                    },
+                    methods: {
+                        submit_form_20200519: function(e) {
+                            if (this.name_20200519 && this.age_20200519 && this.tel_20200519) {
+                                return true;
+                            }
+
+                            this.errors = [];
+
+                            if (!this.name_20200519) {
+                                this.errors.push("名前無し");
+                            }
+                            if (!this.age_20200519) {
+                                this.errors.push("年齢無し");
+                            }
+
+                            // console.log("err" + errors);
+
+                            // var telBoolean = this.tel_20200519.replace(/[━.*‐.*―.*－.*\-.*ー.*\-]/gi,'').match(/^(0[5-9]0[0-9]{8}|0[1-9][1-9][0-9]{7})$/);
+                            if (!this.tel_20200519) {
+                                this.errors.push("TEL 無し");
+                            }
+
+                            if (!checkTel(this.tel_20200519)) {
+                                this.errors.push("TEL 間違い");
+                            }
+
+
+                            e.preventDefault();
+
+                        }
+                    }
+                })
+
+                function checkTel(telNum) {
+                    if (telNum === null) {
+                        return false;
+                    }
+                    var telNumRep = telNum.replace(/[━.*‐.*―.*－.*\-.*ー.*\-]/gi,'');
+                    if (telNumRep.match(/^(0[5-9]0[0-9]{8}|0[1-9][1-9][0-9]{7})$/)) {
+                        console.log("aadgawerag");
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+
+
+            </script>
+
+
+
+        </div>
+
+        <hr size="5" color="RED" />
+        <p id="days" style="margin: 0px;">20200518</p>
+        <hr>
+<!-- ここから 20200518 -->
+
+
+        <div id="input">
+            <form action="#" method="POST">
+                <p>
+
+                    <input id="input1" type="text" v-model="name">
+                </p>
+                <hr />
+                <p>
+
+                    <input id="input2" type="submit" v-model="submit1">
+                </p>
+
+
+
+            </form>
+            <p>{{ name }}</p>
+        </div>
+        <div>
+        </div>
+
+
+        <script>
+            var app = new Vue({
+                el: '#input',
+                data: {
+                    name: "",
+                    submit1: "submit",
+                },
+
+            })
+
+                function submit1_none() {
+
+                    if (name!="") {
+                        this.submit1.style.display = "none";
+                    }
+
+                }
+
+            var app2 = new Vue({
+                el: "#input2",
+
+            })
+        </script>
+
+
+<!-- 汎用 -->
+        <script>
+            // const days = new Vue({
+            //     el: "#days",
+            //     data: {
+            //         days: ""
+            //     },
+
+            // })
+
+            // 半分成功・・・複数に反映されない。
+            // var daysStr = document.getElementById("days").textContent;
+            // document.getElementById("days").textContent = "作業日：" + daysStr;
+            // console.log("aaaa",daysStr);
+
+            // 失敗！
+            // new Vue({
+            //     el: "#days",
+            //     methods() {
+            //         const daysElement = this.$el;
+            //         console.log("aaa", daysElement)
+            //     }
+            // })
+
+
+        </script>
+
+
+
+
+  </body>
+</html>
